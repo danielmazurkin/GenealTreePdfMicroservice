@@ -2,6 +2,7 @@ from config.base import Base, engine, SessionLocal
 from models.user import User
 from sqlalchemy import select
 from sqlalchemy.orm import Session
+from config.base import app
 
 
 def main():
