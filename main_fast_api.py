@@ -1,8 +1,6 @@
-from config.base import Base, engine, SessionLocal
-from models.user import User
-from sqlalchemy import select
-from sqlalchemy.orm import Session
-from config.base import app
+from config.base import Base, engine
+import uvicorn
+from api.v1.documents.download_pdf import app
 
 
 def main():
@@ -12,3 +10,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    uvicorn.run(app, host="0.0.0.0", port=8002)

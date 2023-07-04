@@ -1,5 +1,7 @@
 import pika
 import threading
+from pdf_reports.form_pdf import FormPDFPeople
+import json
 
 
 class ConsumerThread(threading.Thread):
@@ -7,8 +9,7 @@ class ConsumerThread(threading.Thread):
 
     def forming_pdf_report(self, ch, method, properties, body):
         """Этот callback и consumer проверяет наличие такого пользователя в БД."""
-        body_data = body.decode('utf-8')
-        print(" [x] Received %r" % body_data)
+        FormPDFPeople.form_pdf_people(json.loads(body.decode('utf-8')))
 
     def run(self):
         # Устанавливаем обработчик сообщений для очереди
